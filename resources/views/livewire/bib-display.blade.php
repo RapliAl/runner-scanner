@@ -5,5 +5,5 @@
         <p><strong>Name:</strong> {{ $participant->{"runner"} }}</p>
     @else
         <p>No participant found.</p>
-    @endif
+    @endif 
 </div>

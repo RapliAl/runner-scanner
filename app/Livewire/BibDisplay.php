@@ -16,14 +16,10 @@ class BibDisplay extends Component
         $this->participant = null;
 
         if ($displayData) {
+            // Cari di bib-number ATAU runner dengan 1 query
             $this->participant = DB::table('participants')
-                ->where('bib-number',  $displayData)
-                ->first();
-        }
-
-        if ($displayData) {
-            $this->participant = DB::table('participants')
-                ->where('runner',  $displayData)
+                ->where('bib-number', $displayData)
+                ->orWhere('runner', 'LIKE', '%' . $displayData . '%')
                 ->first();
         }
 

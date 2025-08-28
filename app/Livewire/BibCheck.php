@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Session;
 
 class BibCheck extends Component
 {
-    
-     public $displayData;
-    
+    public $displayData;
+    // public $runnerData;
+
     public function search()
     {
         Session::put('search_bib', $this->displayData);
-
+        // Session::put('search_runner', $this->runnerData);
     }
 
     public function render()
