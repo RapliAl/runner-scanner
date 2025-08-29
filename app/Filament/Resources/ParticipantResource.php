@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\Action;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Set;
@@ -55,6 +56,14 @@ class ParticipantResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                Action::make('qr_code')
+                    ->label('Tampilkan QR Code')
+                    ->icon('heroicon-o-qr-code')
+                    ->modalHeading(fn (Participant $record) => 'QR Code - ' . $record->runner)
+                    ->modalContent(fn (Participant $record) => view('filament.qr-modal', ['participant' => $record]))
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Tutup'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

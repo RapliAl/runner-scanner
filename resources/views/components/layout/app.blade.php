@@ -8,5 +8,6 @@
     </head>
     <body>
         {{ $slot }}
+        <livewire:qr-code-display />
     </body>
 </html>
